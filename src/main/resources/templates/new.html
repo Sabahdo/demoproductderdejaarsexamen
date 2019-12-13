@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Nieuwe advertentie</title>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+
+<body>
+
+    <div id="product"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th th:text="#{naamProd}"></th>
+            <th th:text="#{omschrijvingProd}" ></th>
+            <th th:text="#{omschrijvingProd}" ></th>
+            <th th:text="#{omschrijvingProd}" ></th>
+
+            <th></th>
+
+        </tr>
+        </thead>
+
+
+
+
+    <tbody>
+        <tr th:each="product : ${alleProducten}">
+            <td th:text="${product.naamProd}"></td>
+            <td th:text="${product.omschrijvingProd}"></td>
+            <td th:text="${product.prijs}"></td>
+            <td th:text="${product.user}"></td>
+            <td th:text="${product.email}"></td>
+        </tr>
+    </tbody>
+    </table>
+
+
+        <div>
+            <form th:action="@{~/index}" method="post" th:object="${nieuweSnack}">
+             <label for="name" th:text="#{col_name}"></label>
+            <input type="text" th:field="*{name}" id="name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span>
+
+                <label for="price"th:text="#{col_price}"></label>
+             <input type="text" th:field="*{price}" id="price">
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></span>
+
+            <input th:value="#{submit}" type="submit">
+
+    </form>
+</div>
+
+
+
+
+<div id="content" class="container">
+
+    <table cellspacing="0" th:object="${product}">
+
+        <tr>
+
+            <td>Product naam</td>
+
+            <td th:text="*{naamProd}"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Product omschrijving</td>
+
+            <td th:text="*{omschrijvingProd}"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>Usernaam</td>
+
+            <td th:text="*{username}"></td>
+
+        </tr>
+
+        <tr>
+
+            <td>contact</td>
+
+            <td th:text="*{email}"></td>
+
+        </tr>
+        <tr>
+
+            <td>Verkoopprijs</td>
+
+            <td th:text="*{prijs}"></td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>
